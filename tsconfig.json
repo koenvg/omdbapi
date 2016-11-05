@@ -1,20 +1,11 @@
 {
     "compilerOptions": {
         "outDir": "./dist/",
-        "sourceMap": true,
-        "noImplicitAny": true,
         "module": "commonjs",
         "target": "es5",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
         "declaration": true
     },
-    "include": [
-        "typings/**/*",
-        "src/**/*"
-    ],
-    "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
+    "files": [
+        "./src/ts/search.ts"
     ]
 }

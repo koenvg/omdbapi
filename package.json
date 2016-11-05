@@ -1,16 +1,16 @@
 {
-  "name": "omdbapi",
+  "name": "js-omdb-api",
   "version": "0.0.1",
   "description": "omdbapi library for javascript",
   "main": "./dist/search.js",
+  "typings": "./dist/search",
   "scripts": {
     "build": "gulp build",
     "lint": "gulp lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "omdbapi",
-    "javascript"
+    "omdbapi"
   ],
   "author": "Koen Van Geert",
   "license": "ISC",
