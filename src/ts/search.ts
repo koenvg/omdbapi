@@ -31,8 +31,8 @@ export interface ApiResult {
   Response: string;
 }
 
-export const searchById = (imdbID: string): Promise<SearchResult> => {
-  let url = `${settings.url}?i=${imdbID}`;
+export const searchById = (imdbId: string): Promise<SearchResult> => {
+  let url = `${settings.url}?i=${imdbId}`;
   url += "&r=json";
   return fetch(url)
     .then((res) => {

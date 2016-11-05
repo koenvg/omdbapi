@@ -1,10 +1,11 @@
 {
   "name": "omdbapi",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "omdbapi library for javascript",
-  "main": "index.js",
+  "main": "./dist/search.js",
   "scripts": {
-    "build": "",
+    "build": "gulp build",
+    "lint": "gulp lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
