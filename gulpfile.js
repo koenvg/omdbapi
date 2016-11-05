@@ -8,7 +8,7 @@ var tsProject = ts.createProject('tsconfig.json');
 Error.stackTraceLimit = Infinity;
 
 gulp.task("build", ['lint'], function () {
-    return gulp.src('src/ts/search.ts')
+    return gulp.src(['src/ts/search.ts', 'src/ts/**/*.ts', 'typings/**/*.d.ts'])
         .pipe(plumber())
         .pipe(tsProject())
         .pipe(gulp.dest("dist/"));
