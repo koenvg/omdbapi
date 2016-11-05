@@ -1,3 +1,3 @@
 export default {
-  url: "http://www.omdbapi.com/"
-}
+  url: "http://www.omdbapi.com/",
+};
