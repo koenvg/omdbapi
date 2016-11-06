@@ -1,6 +1,6 @@
 import { settings } from "./config/config";
 import * as Promise  from "es6-promise";
-import * as fetch from "node-fetch";
+import "whatwg-fetch";
 
 export type TypeOfContent = "movie" | "series" | "episode";
 
