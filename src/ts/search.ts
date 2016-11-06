@@ -1,6 +1,5 @@
-import { settings } from "./config/config";
 import * as Promise  from "es6-promise";
-import "whatwg-fetch";
+import { get } from "./client";
 
 export type TypeOfContent = "movie" | "series" | "episode";
 
@@ -31,21 +30,36 @@ export interface ApiResult {
   Response: string;
 }
 
-export const searchById = (imdbId: string): Promise<SearchResult> => {
-  let url = `${settings.url}?i=${imdbId}`;
-  url += "&r=json";
-  return fetch(url)
-    .then((res) => {
-        return res.json();
-    });
+export interface RequestParams {
+  type?: TypeOfContent;
+  year?: string;
+}
+
+export interface RequestByIdParams extends RequestParams {
+  imdbId: string;
+  plot?: string;
+  includeTomatoesRating?: boolean;
+}
+
+export interface RequestByTitleParams extends RequestParams {
+  title: string;
+  plot?: string;
+  includeTomatoesRating?: boolean;
+}
+
+export interface SearchParams extends RequestParams {
+  search: string;
+  page?: number;
+}
+
+export const searchById = (searchParams: RequestByIdParams): Promise<SearchResult>  => {
+  return get(searchParams);
 };
 
-export const searchByName = (): Promise<SearchResult> => {
-  // TODO: searchByName
-  return null;
+export const searchByName = (searchParams: RequestByTitleParams): Promise<SearchResult> => {
+  return get(searchParams);
 };
 
-export const search = (): Promise<ApiResult> => {
- // TODO: search functionality
- return null;
+export const search = (searchParams: SearchParams): Promise<ApiResult> => {
+  return get(searchParams);
 };
