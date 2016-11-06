@@ -1,6 +1,6 @@
 {
   "name": "js-omdb-api",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "omdbapi library for javascript",
   "main": "./dist/search.js",
   "typings": "./dist/search",
