@@ -7,7 +7,7 @@
   "scripts": {
     "build": "gulp build",
     "lint": "gulp lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "omdbapi"
@@ -15,18 +15,39 @@
   "author": "Koen Van Geert",
   "license": "ISC",
   "devDependencies": {
+    "@types/es6-promise": "0.0.32",
+    "@types/fetch-mock": "^5.0.5",
+    "@types/jest": "^15.1.32",
+    "es6-promise": "^4.0.5",
+    "fetch-mock": "^5.5.0",
     "gulp": "^3.9.1",
     "gulp-plumber": "^1.1.0",
     "gulp-tslint": "^6.1.3",
     "gulp-tslint-stylish": "^1.1.1",
     "gulp-typescript": "^3.1.2",
     "gulp-util": "^3.0.7",
+    "jest": "^16.0.2",
     "tslint": "^3.15.1",
-    "typescript": "^2.0.7",
-    "@types/es6-promise": "0.0.32",
-    "es6-promise": "^4.0.5"
+    "typescript": "^2.0.7"
   },
   "dependencies": {
     "whatwg-fetch": "^1.0.0"
-  }
+  },
+  "jest": {
+    "automock": true,
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "testRegex": "/__tests__/.*\\.(ts|js)$"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koenvg/omdbapi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/koenvg/omdbapi/issues"
+  },
+  "homepage": "https://github.com/koenvg/omdbapi#readme"
 }

@@ -17,18 +17,20 @@ const paramsMap = {
 
 const createUrlFromParams = (params: any): string => {
   let url = `${settings.url}?r=json`;
-  Object.keys((key: any) => {
-    const convertedKey = paramsMap[key];
-    if (!convertedKey) {
-      throw Error(`Invalid key ${key}`);
+  for (let key in params) {
+    if (params.hasOwnProperty(key)) {
+      const convertedKey = paramsMap[key];
+      if (!convertedKey) {
+        throw Error(`Invalid key ${key}`);
+      }
+      url += `&${convertedKey}=${params[key]}`;
     }
-    url += `?${convertedKey}=${params[key]}`;
-  });
+  }
   return url;
 };
 
 export const get = (params: any): Promise<any> => {
-  let url = createUrlFromParams(params);
+  const url = createUrlFromParams(params);
   return fetch(url)
     .then((res) => {
       return res.json();

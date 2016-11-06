@@ -52,11 +52,11 @@ export interface SearchParams extends RequestParams {
   page?: number;
 }
 
-export const searchById = (searchParams: RequestByIdParams): Promise<SearchResult>  => {
+export const findById = (searchParams: RequestByIdParams): Promise<SearchResult>  => {
   return get(searchParams);
 };
 
-export const searchByName = (searchParams: RequestByTitleParams): Promise<SearchResult> => {
+export const findByTitle = (searchParams: RequestByTitleParams): Promise<SearchResult> => {
   return get(searchParams);
 };
 
