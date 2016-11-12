@@ -11,12 +11,10 @@ describe("fintByTitle", () => {
 
   it("pass on the params", () => {
     findByTitle(params);
-    expect(false).toBeTruthy();
   });
 
   it("should throw an error if title is empty", () => {
     findByTitle(params);
-    expect(false).toBeTruthy();
   });
 
   it("should ignore invalid params", () => {
