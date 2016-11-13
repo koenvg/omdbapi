@@ -16,15 +16,15 @@ const paramsMap = {
 };
 
 const createUrlFromParams = (params: any): string => {
+  const keys = Object.keys(params);
   let url = `${settings.url}?r=json`;
-  for (let key in params) {
-    if (params.hasOwnProperty(key)) {
-      const convertedKey = paramsMap[key];
-      if (!convertedKey) {
-        throw Error(`Invalid key ${key}`);
-      }
-      url += `&${convertedKey}=${params[key]}`;
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    const convertedKey = paramsMap[key];
+    if (!convertedKey) {
+      throw Error(`Invalid key ${key}`);
     }
+    url += `&${convertedKey}=${params[key]}`;
   }
   return url;
 };
