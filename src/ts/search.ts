@@ -31,35 +31,30 @@ export interface ApiResult {
 }
 
 export interface RequestParams {
-  type?: TypeOfContent;
+  contentType?: TypeOfContent;
   year?: string;
-}
-
-export interface RequestByIdParams extends RequestParams {
-  imdbId: string;
-  plot?: string;
-  includeTomatoesRating?: boolean;
-}
-
-export interface RequestByTitleParams extends RequestParams {
-  title: string;
-  plot?: string;
-  includeTomatoesRating?: boolean;
-}
-
-export interface SearchParams extends RequestParams {
-  search: string;
   page?: number;
+  plot?: string;
+  includeTomatoesRating?: boolean;
 }
 
-export const findById = (searchParams: RequestByIdParams): Promise<SearchResult>  => {
+export const findById = (imdbId: string, searchParams?: RequestParams): Promise<SearchResult>  => {
+  const params = Object.assign({
+    imdbId,
+  }, searchParams);
+  return get(params);
+};
+
+export const findByTitle = (title: string, searchParams: RequestParams): Promise<SearchResult> => {
+  const params = Object.assign({
+    title,
+  }, searchParams);
   return get(searchParams);
 };
 
-export const findByTitle = (searchParams: RequestByTitleParams): Promise<SearchResult> => {
-  return get(searchParams);
-};
-
-export const search = (searchParams: SearchParams): Promise<ApiResult> => {
+export const search = (query: string, searchParams: RequestParams): Promise<ApiResult> => {
+  const params = Object.assign({
+    search: query,
+  }, searchParams);
   return get(searchParams);
 };
