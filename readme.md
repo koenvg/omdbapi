@@ -21,7 +21,7 @@ findById("tt0944947", {
   contentType: '',                // "movie" | "series" | "episode"
   year: '',                       // string
   plot: '',                       // string
-  includeTomatoesRating: true,    // string
+  includeTomatoesRating: true,    // boolean
 }).then((result) => {
   console.log(result);
 }).catch((error) => {
@@ -37,7 +37,7 @@ findByTitle("Game of Thrones", {
   contentType: '',                // "movie" | "series" | "episode"
   year: '',                       // string
   plot: '',                       // string
-  includeTomatoesRating: true,    // string
+  includeTomatoesRating: true,    // boolean
 }).then((result) => {
   console.log(result);
 }).catch((error) => {
