@@ -23,8 +23,8 @@ describe("client", () => {
     expect(fetchMock.lastUrl()).toContain(`s=game of thrones`);
   });
 
-  it("should throw an error when the api's response is false", () => {
-    params.search = "errorResponse";
-    get(params);
+  it("should trow an error if wrong keys are passed", () => {
+    const wrongParams = Object.assign({wrongParam: "wrongPram", params});
+    expect(() => get(wrongParams)).toThrowError("Invalid key wrongParam");
   });
 });

@@ -45,16 +45,16 @@ export const findById = (imdbId: string, searchParams?: RequestParams): Promise<
   return get(params);
 };
 
-export const findByTitle = (title: string, searchParams: RequestParams): Promise<SearchResult> => {
+export const findByTitle = (title: string, searchParams: RequestParams = {}): Promise<SearchResult> => {
   const params = Object.assign({
     title,
-  }, searchParams);
-  return get(searchParams);
+  }, searchParams );
+  return get(params);
 };
 
-export const search = (query: string, searchParams: RequestParams): Promise<ApiResult> => {
+export const search = (query: string, searchParams?: RequestParams): Promise<ApiResult> => {
   const params = Object.assign({
     search: query,
   }, searchParams);
-  return get(searchParams);
+  return get(params);
 };

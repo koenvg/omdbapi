@@ -22,7 +22,7 @@ const createUrlFromParams = (params: any): string => {
     const key = keys[i];
     const convertedKey = paramsMap[key];
     if (!convertedKey) {
-      throw Error(`Invalid key ${key}`);
+      throw new Error(`Invalid key ${key}`);
     }
     url += `&${convertedKey}=${params[key]}`;
   }
