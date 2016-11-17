@@ -1,4 +1,4 @@
-# omdbapi for node
+# omdbapi for the browser
 This is a small javascript library for the [omdbapi](http://www.omdbapi.com/).</br>
 It is ment to be used in the browser. 
 It can be used in nodejs as well but then you will need to adjust the fetch package.
