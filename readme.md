@@ -29,6 +29,16 @@ findById("tt0944947", {
 }));
 ```
 
+### Find a show by imdb ID and get all season information
+``` Typescript
+import { findByIdWithSeasons } from "js-omdb-api";
+
+findByIdWithSeasons("tt0944947")
+  .then(result => {
+    console.log(result.seasons[0].episodes);
+  });
+```
+
 ### Find a show by title
 ``` Typescript
 import { findByTitle } from "js-omdb-api";

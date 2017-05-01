@@ -1,7 +1,7 @@
 jest.dontMock("../search");
 jest.mock("../client");
 
-import { findByTitle, findById, search, RequestParams} from "../search";
+import { findByTitle, findById, search, RequestParams, findByIdWithSeasons } from "../search";
 import * as Client from "../client";
 
 describe("findByTitle", () => {
@@ -11,11 +11,11 @@ describe("findByTitle", () => {
   let get: jasmine.Spy;
 
   beforeEach(() => {
-   get = spyOn(Client, "get").and.callFake(() => {
-     return new Promise<void>((resolve, reject) => {
-       resolve();
-     });
-   });
+    get = spyOn(Client, "get").and.callFake(() => {
+      return new Promise<void>((resolve, reject) => {
+        resolve();
+      });
+    });
   });
 
   it("should add title to the params", () => {
@@ -41,11 +41,11 @@ describe("findById", () => {
   let get: jasmine.Spy;
 
   beforeEach(() => {
-   get = spyOn(Client, "get").and.callFake(() => {
-     return new Promise<void>((resolve, reject) => {
-       resolve();
-     });
-   });
+    get = spyOn(Client, "get").and.callFake(() => {
+      return new Promise<void>((resolve, reject) => {
+        resolve();
+      });
+    });
   });
 
   it("should add imdbId to the params", () => {
@@ -71,11 +71,11 @@ describe("search", () => {
   let get: jasmine.Spy;
 
   beforeEach(() => {
-   get = spyOn(Client, "get").and.callFake(() => {
-     return new Promise<void>((resolve, reject) => {
-       resolve();
-     });
-   });
+    get = spyOn(Client, "get").and.callFake(() => {
+      return new Promise<void>((resolve, reject) => {
+        resolve();
+      });
+    });
   });
 
   it("should add search to the params", () => {
@@ -92,4 +92,25 @@ describe("search", () => {
       includeTomatoesRating: false,
     });
   });
+});
+
+describe("findByIdWithSeasons", () => {
+  (Client as any).get = jest.fn().mockReturnValue(Promise.resolve({ title: "Hello world", totalSeasons: "12" }));
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("should return the show details with the season details", async () => {
+    const show = await findByIdWithSeasons("id");
+    expect(show).toMatchSnapshot();
+  });
+
+  it("should make a call for each season", async () => {
+    await findByIdWithSeasons("id");
+    for (let i = 1; i <= 12; i++) {
+      expect(Client.get).toBeCalledWith({ imdbId: "id", season: i });
+    }
+  });
+
 });

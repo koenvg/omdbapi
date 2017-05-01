@@ -1,4 +1,3 @@
-import * as Promise  from "es6-promise";
 import { get } from "./client";
 
 export type TypeOfContent = "movie" | "series" | "episode";
@@ -22,6 +21,16 @@ export interface SearchResult {
   Metascrore?: string;
   imdbRating?: string;
   imdbVotes?: string;
+  totalSeasons?: number;
+}
+
+export interface SeasonResult {
+  season: number;
+  episodes: SearchResult[];
+};
+
+export interface ShowResult extends SearchResult {
+  seasons: SeasonResult[];
 }
 
 export interface ApiResult {
@@ -38,23 +47,34 @@ export interface RequestParams {
   includeTomatoesRating?: boolean;
 }
 
-export const findById = (imdbId: string, searchParams?: RequestParams): Promise<SearchResult>  => {
-  const params = Object.assign({
-    imdbId,
-  }, searchParams);
+export const findByIdWithSeasons = (imdbId: string): Promise<ShowResult> => {
+  let show: SearchResult;
+  return get({ imdbId })
+    .then(result => {
+      show = result;
+      const seasons = [];
+      for (let i = 1; i <= result.totalSeasons; i++) {
+        seasons.push(get({ imdbId, season: i })
+          .then(season => ({ ...season, episodes: season.Episodes })));
+      }
+      return Promise.all(seasons);
+    })
+    .then((seasons: SeasonResult[]) => {
+      return { ...show, seasons };
+    });
+};
+
+export const findById = (imdbId: string, searchParams?: RequestParams): Promise<SearchResult> => {
+  const params = { ...searchParams, imdbId };
   return get(params);
 };
 
 export const findByTitle = (title: string, searchParams: RequestParams = {}): Promise<SearchResult> => {
-  const params = Object.assign({
-    title,
-  }, searchParams );
+  const params = { ...searchParams, title };
   return get(params);
 };
 
 export const search = (query: string, searchParams?: RequestParams): Promise<ApiResult> => {
-  const params = Object.assign({
-    search: query,
-  }, searchParams);
+  const params = { ...searchParams, search: query };
   return get(params);
 };

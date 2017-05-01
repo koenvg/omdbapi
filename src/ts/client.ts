@@ -1,5 +1,4 @@
 import { settings } from "./config/config";
-import * as Promise  from "es6-promise";
 import "whatwg-fetch";
 
 const paramsMap = {
@@ -34,7 +33,8 @@ export const get = (params: any): Promise<any> => {
   return fetch(url)
     .then((res) => {
       return res.json();
-    }).then((searchResult: any) => {
+    })
+    .then((searchResult: any) => {
       if (searchResult.Response === "False") {
         throw Error(searchResult.Error);
       }

@@ -7,7 +7,7 @@
   "scripts": {
     "build": "gulp build",
     "lint": "gulp lint",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "keywords": [
     "omdbapi"
@@ -17,8 +17,7 @@
   "devDependencies": {
     "@types/es6-promise": "0.0.32",
     "@types/fetch-mock": "^5.0.5",
-    "@types/jest": "^15.1.32",
-    "es6-promise": "^4.0.5",
+    "@types/jest": "^19.2.2",
     "fetch-mock": "^5.5.0",
     "gulp": "^3.9.1",
     "gulp-plumber": "^1.1.0",
@@ -26,7 +25,7 @@
     "gulp-tslint-stylish": "^1.1.1",
     "gulp-typescript": "^3.1.2",
     "gulp-util": "^3.0.7",
-    "jest": "^16.0.2",
+    "jest": "^19.0.2",
     "tslint": "^3.15.1",
     "typescript": "^2.0.7"
   },
@@ -39,7 +38,9 @@
       "ts",
       "js"
     ],
-    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "transform": {
+      ".*": "<rootDir>/preprocessor.js"
+    },
     "testRegex": "/__tests__/.*\\.(ts|js)$"
   },
   "repository": {
